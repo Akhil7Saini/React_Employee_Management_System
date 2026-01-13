@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthProvider.jsx'
 const AllTasks = () => {
   const [userData] = useContext(AuthContext)
 
-  // 🔒 SAFETY GUARD (required)
+  // SAFETY GUARD (required)
   if (!userData) {
     return (
       <div className="text-slate-400 p-6">
