@@ -8,12 +8,8 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [loggedInUserData, setLoggedInUserData] = useState(null)
 
-  // 🔹 Context gives: [employeesArray, setEmployeesArray]
   const [employees] = useContext(AuthContext)
 
-  /* ----------------------------------
-     Restore login on page refresh
-  ---------------------------------- */
   useEffect(() => {
     const storedUser = localStorage.getItem('loggedInUser')
 
@@ -27,11 +23,9 @@ const App = () => {
     }
   }, [])
 
-  /* ----------------------------------
-     LOGIN HANDLER (ADMIN + EMPLOYEE)
-  ---------------------------------- */
+
   const handleLogin = (email, password) => {
-    // ✅ ADMIN LOGIN
+    // ADMIN LOGIN
     if (email === 'admin@me.com' && password === '123') {
       setUser('admin')
       localStorage.setItem(
@@ -41,7 +35,7 @@ const App = () => {
       return
     }
 
-    // ✅ EMPLOYEE LOGIN
+    // EMPLOYEE LOGIN
     if (employees) {
       const employee = employees.find(
         (e) => e.email === email && e.password === password
@@ -62,13 +56,9 @@ const App = () => {
       }
     }
 
-    // ❌ INVALID
     alert('Invalid Credentials')
   }
 
-  /* ----------------------------------
-     RENDER
-  ---------------------------------- */
   return (
     <>
       {!user && <Login handleLogin={handleLogin} />}
